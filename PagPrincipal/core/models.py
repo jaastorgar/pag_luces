@@ -10,7 +10,7 @@ class Cliente(models.Model):
     verbose_name='Direccion del cliente')
     correo = models.EmailField(default = 'correo@example.com')
 
-    def __str__(self):
+    def __str__ (self):
         return self.nombreCliente 
 
 
@@ -23,7 +23,7 @@ class Producto(models.Model):
     imagen = models.ImageField(upload_to='', null=True, 
     blank=True, verbose_name='Imagen del producto')
     
-    def __str__(self):
+    def __str__ (self):
         return self.nombre
     
 class Reserva(models.Model):
@@ -37,3 +37,10 @@ class Reserva(models.Model):
 
     def __str__ (self):
         return f'Reserva para {self.producto.nombre} de {self.producto.stock} tambien {self.cliente.nombreCliente} de {self.cliente.correo} de {self.cliente.telefono} de {self.cliente.direccion}'
+
+class InicioSesion(models.Model):
+    cliente = models.ForeignKey(Cliente, on_delete = models.CASCADE)
+    contrasena = models.CharField(max_length = 20, verbose_name = 'Contraseña')
+
+    def __str__ (self):
+        return self.cliente.correo

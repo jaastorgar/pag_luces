@@ -8,6 +8,7 @@ class Cliente(models.Model):
     verbose_name='Telefono del cliente')
     direccion = models.CharField(max_length=60, blank=True, null=True,
     verbose_name='Direccion del cliente')
+    correo = models.EmailField(default = 'correo@example.com')
 
     def __str__(self):
         return self.nombreCliente 
@@ -24,3 +25,15 @@ class Producto(models.Model):
     
     def __str__(self):
         return self.nombre
+    
+class Reserva(models.Model):
+    cliente = models.ForeignKey(Cliente, on_delete = models.CASCADE)
+    fechainicio = models.DateField()
+    fechafin = models.DateField()
+    producto = models.ForeignKey(Producto, on_delete = models.CASCADE)
+    comentario = models.TextField()
+    terminocondicion = models.BooleanField(default = False,
+    verbose_name = 'Acepto los terminos y condiciones')
+
+    def __str__ (self):
+        return f'Reserva para {self.producto.nombre} de {self.producto.stock} tambien {self.cliente.nombreCliente} de {self.cliente.correo} de {self.cliente.telefono} de {self.cliente.direccion}'

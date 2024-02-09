@@ -13,7 +13,6 @@ class Cliente(models.Model):
     def __str__ (self):
         return self.nombreCliente 
 
-
 class Producto(models.Model):
     nombre = models.CharField(max_length=100,
     verbose_name='Nombre del producto')

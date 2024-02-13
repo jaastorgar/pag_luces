@@ -1,11 +1,69 @@
 @media only screen and (max-width: 600px) {
 }
 
-img {
-    max-width: 100%;
-    height: auto;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 body {
     background-color: #add8e6;
+}
+
+/* Para el carrusel */
+#conteItemsCarrusel {
+    height: 400px;
+    overflow: hidden;
+}
+
+.itemCarrusel {
+    height: 100%;
+    position: relative;
+}
+
+.tarjetaCarrusel {
+    height: 100%;
+}
+
+.flechasCarrusel {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+#carruselItem-1 {
+    background-color: rgb(221, 164, 58);
+}
+
+#carruselItem-2 {
+    background-color: rgb(105, 232, 105);
+}
+
+#carruselItem-3 {
+    background-color: rgb(240, 128, 240);
+}
+
+i {
+    color: white;
+}
+
+#contePuntos {
+    background-color: rgb(133, 132, 132);
+    display: flex;
+    justify-content: space-around;
+}
+
+#contePuntos > a {
+    font-size: 1.8em;
+}
+
+img {
+    height: 100%;
+    width: 100%;
 }

@@ -11,43 +11,15 @@
     <title>Arriendo de luces</title>
 </head>
 <body>
-    <h1>BIENVENIDO</h1>
     <br>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-          </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
-        </div>
-      </div>
+    <nav id="menuNav">
+      <h1 id="logoMenu">LOGO</h1>
+        <ul>
+          <li><a href="">Inicio</a></li>
+          <li><a href="">Contacto</a></li>
+          <li><a href="">Quienes somos</a></li>
+          <li><a href="">Carrito</a></li>
+        </ul>
     </nav>
     <br>
     <div>
@@ -70,7 +42,7 @@
       </div>
       <div class="itemCarrusel" id="itemCarrusel-2">
         <div class="tarjetaCarrusel" id="carruselItem-2">
-          B
+          <img src="{% static 'core/img/fiesta2.jpeg' %}" alt="">
         </div>
         <div class="flechasCarrusel">
           <a href="#itemCarrusel-1">
@@ -83,7 +55,7 @@
       </div>
       <div class="itemCarrusel" id="itemCarrusel-3">
         <div class="tarjetaCarrusel" id="carruselItem-3">
-          C
+          <img src="{% static 'core/img/fiesta3.jpeg' %}" alt="">
         </div>
         <div class="flechasCarrusel">
           <a href="#itemCarrusel-2">
@@ -103,7 +75,7 @@
     <br>
     <div class="container">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="card" style="width: 18rem;">
             <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
@@ -113,7 +85,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="card" style="width: 18rem;">
             <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
@@ -123,9 +95,19 @@
             </div>
           </div>
         </div>
+        <div class="col-md-4">
+          <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card 3</h5>
+              <p class="card-text">Contenido de la segunda tarjeta.</p>
+              <a href="#" class="btn btn-primary">Ir a otro lugar</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    
+      
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

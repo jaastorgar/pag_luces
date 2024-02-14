@@ -1,19 +1,45 @@
 @media only screen and (max-width: 600px) {
 }
 
+body {
+    background-color: #add8e6;
+}
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-body {
-    background-color: #add8e6;
+/* Para el navbar */
+#menuNav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-left: 5%;
+    padding-right: 5%;
+    font-weight: bold;
+}
+
+#logoMenu {
+    color: white;
+    font-size: 45px;
+}
+
+ul li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+#menuNav > a {
+    color: white;
+    text-decoration: none;
 }
 
 /* Para el carrusel */
 #conteItemsCarrusel {
-    height: 400px;
+    height: 500px;
     overflow: hidden;
 }
 
@@ -37,24 +63,12 @@ body {
     padding: 20px;
 }
 
-#carruselItem-1 {
-    background-color: rgb(221, 164, 58);
-}
-
-#carruselItem-2 {
-    background-color: rgb(105, 232, 105);
-}
-
-#carruselItem-3 {
-    background-color: rgb(240, 128, 240);
-}
-
 i {
     color: white;
 }
 
 #contePuntos {
-    background-color: rgb(133, 132, 132);
+    background-color: #add8e6;
     display: flex;
     justify-content: space-around;
 }

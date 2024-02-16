@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'PagPrincipal.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'conexionnew',
+        'NAME': 'datosfiesta',
         'USER': 'javito',
         'PASSWORD': 'pass',
         'HOST': '127.0.0.1',
@@ -130,4 +130,4 @@ STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'  

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe Completo</title>
+    <!-- Agrega tus estilos CSS si es necesario -->
+</head>
+<body>
+    <h1>Informe Completo</h1>
+
+    <!-- Sección de Información de Clientes -->
+    <h2>Información de Clientes</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre Cliente</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+                <th>Correo</th>
+                <th>Región</th>
+                <th>Comuna</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cliente in clientes %}
+                <tr>
+                    <td>{{ cliente.nombreCliente }}</td>
+                    <td>{{ cliente.telefono }}</td>
+                    <td>{{ cliente.direccion }}</td>
+                    <td>{{ cliente.correo }}</td>
+                    <td>{{ cliente.region.nombre if cliente.region else 'N/A' }}</td>
+                    <td>{{ cliente.comuna.nombre if cliente.comuna else 'N/A' }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Informacion de los productos</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Stock</th>
+            </tr>   
+        </thead>
+        <tbody>
+            {% for producto in productos %}
+                <tr>
+                    <td>{{ producto.nombre }}</td>
+                    <td>{{ producto.descripcion }}</td>
+                    <td>{{ producto.precio }}</td>
+                    <td>{{ producto.stock }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Informacion de las reservas</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Producto</th>
+                <th>Fecha de inicio</th>
+                <th>Fecha termino</th>
+            </tr>   
+        </thead>
+        <tbody>
+            {% for reserva in reservas %}
+                <tr>
+                    <td>{{ reserva.cliente.nombreCliente }}</td>
+                    <td>{{ reserva.producto.nombre }}</td>
+                    <td>{{ reserva.fechainicio }}</td>
+                    <td>{{ reserva.fechafin }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Informacion de inicios de sesion</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Contraseña</th>
+            </tr>   
+        </thead>
+        <tbody>
+            {% for inicio_sesion in inicios_sesion %}
+                <tr>
+                    <td>{{ inicio_sesion.cliente.nombreCliente }}</td>
+                    <td>{{ inicio_sesion.contrasena }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

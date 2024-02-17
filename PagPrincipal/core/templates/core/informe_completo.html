@@ -79,23 +79,5 @@
             {% endfor %}
         </tbody>
     </table>
-
-    <h2>Informacion de inicios de sesion</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Cliente</th>
-                <th>Contraseña</th>
-            </tr>   
-        </thead>
-        <tbody>
-            {% for inicio_sesion in inicios_sesion %}
-                <tr>
-                    <td>{{ inicio_sesion.cliente.nombreCliente }}</td>
-                    <td>{{ inicio_sesion.contrasena }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
 </body>
 </html>

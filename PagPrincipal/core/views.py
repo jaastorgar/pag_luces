@@ -94,3 +94,6 @@ def informe_completo(request):
         'productos': productos,
         'reservas': reservas,
     })
+
+def reservas(request):
+    return render(request, 'core/reservaLuces.html')

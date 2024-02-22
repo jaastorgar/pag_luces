@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'PagPrincipal.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'datosfiesta',
+        'NAME': 'datossenc',
         'USER': 'javito',
         'PASSWORD': 'pass',
         'HOST': '127.0.0.1',

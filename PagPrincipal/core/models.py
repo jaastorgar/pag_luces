@@ -43,6 +43,7 @@ class Reserva(models.Model):
     fechainicio = models.DateField()
     fechafin = models.DateField()
     producto = models.ForeignKey(Producto, on_delete = models.CASCADE)
+    cantidad = models.PositiveBigIntegerField(default = 1)
     comentario = models.TextField()
     terminocondicion = models.BooleanField(default = False,
     verbose_name = 'Acepto los terminos y condiciones')

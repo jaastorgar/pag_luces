@@ -15,11 +15,11 @@ class Comuna(models.Model):
 
 class Cliente(models.Model):
     nombreCliente = models.CharField(max_length=50, verbose_name='Nombre del cliente')
-    telefono = models.CharField(max_length=15, blank=True, null=True,
+    telefono = models.IntegerField(blank=True, null=True,
     verbose_name='Telefono del cliente')
     direccion = models.CharField(max_length=60, blank=True, null=True,
     verbose_name='Direccion del cliente')
-    correo = models.EmailField(default = 'correo@example.com')
+    email = models.EmailField(blank=True, null=True)
     region = models.ManyToManyField('Region', blank = True) 
     comuna = models.ManyToManyField('Comuna', blank = True)
 
@@ -48,4 +48,4 @@ class Reserva(models.Model):
     verbose_name = 'Acepto los terminos y condiciones')
 
     def __str__ (self):
-        return f'Reserva para {self.producto.nombre} de {self.producto.stock} tambien {self.cliente.nombreCliente} de {self.cliente.correo} de {self.cliente.telefono} de {self.cliente.direccion}'
+        return f'Reserva para {self.producto.nombre} de {self.producto.stock} tambien {self.cliente.nombreCliente} de {self.cliente.email} de {self.cliente.telefono} de {self.cliente.direccion}'

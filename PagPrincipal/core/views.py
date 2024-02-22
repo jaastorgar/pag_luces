@@ -2,13 +2,16 @@ from django.shortcuts import render
 from .models import Cliente, Producto, Reserva
 from django.http import HttpResponse
 from reportlab.pdfgen import canvas
+from django.db.models import Q 
 
 # Create your views here.
 def home(request):
     return render(request, 'core/home.html')
 
 def arriendo(request):
-    return render(request, 'core/Arriendo.html')
+    productos = Producto.objects.all()
+
+    return render(request, 'core/Arriendo.html', {'productos': productos})
 
 def iniciosesion(request):
     return render(request, 'core/inicioSesion.html')
@@ -40,7 +43,7 @@ def generar_informe_completo(request):
         y -= 15
         pdf.drawString(100, y, f"Dirección: {cliente.direccion}")
         y -= 15
-        pdf.drawString(100, y, f"Correo: {cliente.correo}")
+        pdf.drawString(100, y, f"Correo: {cliente.email}")
         
         # Manejo adecuado del campo ManyToManyField 'region'
         regiones = ', '.join(region.nombre for region in cliente.region.all()) if cliente.region.exists() else 'N/A'
@@ -81,6 +84,14 @@ def generar_informe_completo(request):
         y -= 15
         pdf.drawString(100, y, f"Fecha Fin: {reserva.fechafin}")
         y -= 20
+    
+    # Indica que la página está completa
+    pdf.showPage()
+
+    # Guarda el objeto PDF
+    pdf.save()
+
+    return response
 
 def informe_completo(request):
     # Obtener datos de los modelos (ajusta según tus necesidades)
@@ -97,3 +108,9 @@ def informe_completo(request):
 
 def reservas(request):
     return render(request, 'core/reservaLuces.html')
+
+def busquedas(request):
+    query = request.GET.get('q')
+    resultado = Producto.objects.filter(Q(nombre__icontains = query) | Q(descripcion = query))
+
+    return render(request, 'core/Arriendo.html', {'resultado': resultado, 'query': query})

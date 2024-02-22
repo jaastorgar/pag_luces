@@ -20,6 +20,10 @@
           <li><a href="">Quienes somos</a></li>
           <li><a href="">Carrito</a></li>
         </ul>
+        <form id="searchForm" action="{% url 'busquedas' %}" method="get">
+          <input type="text" name="q" placeholder="Buscar">
+          <button type="submit">Buscar</button>
+       </form>
     </nav>
     <br>
     <div>

@@ -64,13 +64,15 @@
             <tr>
                 <th>Cliente</th>
                 <th>Producto</th>
+                <th>Cantidad</th>
             </tr>   
         </thead>
         <tbody>
             {% for reserva in reservas %}
                 <tr>
-                    <td>{{ reserva.cliente.nombreCliente }}</td>
+                    <td>{{ reserva.carrito.id }}</td>
                     <td>{{ reserva.producto.nombre }}</td>
+                    <td>{{ reserva.cantidad }}</td>
                 </tr>
             {% endfor %}
         </tbody>

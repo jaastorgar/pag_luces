@@ -20,7 +20,7 @@ def generar_informe_completo(request):
     # Obtén todos los objetos de los modelos relacionados
     clientes = Cliente.objects.prefetch_related('region', 'comuna').all()
     productos = Producto.objects.all()
-    reservas = Reserva.objects.prefetch_related('cliente', 'producto').all()
+    reservas = Reserva.objects.prefetch_related('carrito__cliente', 'producto').all()
 
     # Configura el encabezado de la respuesta HTTP para indicar que es un archivo PDF
     response = HttpResponse(content_type='application/pdf')
@@ -76,9 +76,11 @@ def generar_informe_completo(request):
     pdf.drawString(100, y, "Información de Reservas:")
     for reserva in reservas:
         y -= 20
-        pdf.drawString(100, y, f"Cliente: {reserva.carrito.cliente.nombreCliente}")
+        pdf.drawString(100, y, f"Carrito del Cliente: {reserva.carrito.id}")
         y -= 15
         pdf.drawString(100, y, f"Producto: {reserva.producto.nombre}")
+        y -= 20
+        pdf.drawString(100, y, f"Cantidad: {reserva.cantidad}")
         y -= 20
     
     # Indica que la página está completa

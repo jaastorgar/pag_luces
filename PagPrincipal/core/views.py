@@ -3,15 +3,16 @@ from .models import Cliente, Producto, Reserva
 from django.http import HttpResponse
 from reportlab.pdfgen import canvas
 from django.db.models import Q 
+from .filters import ReservaFilter
+from django_filters.views import FilterView
+
 
 # Create your views here.
 def home(request):
     return render(request, 'core/home.html')
 
 def arriendo(request):
-    productos = Producto.objects.all()
-
-    return render(request, 'core/Arriendo.html', {'productos': productos})
+    return render(request, 'core/Arriendo.html')
 
 def iniciosesion(request):
     return render(request, 'core/inicioSesion.html')
@@ -104,11 +105,11 @@ def informe_completo(request):
         'reservas': reservas,
     })
 
-def reservas(request):
-    return render(request, 'core/reservaLuces.html')
+class ListaReservasView(FilterView):
+    model = Reserva
+    template_name = 'reserva_filter.html'
+    filterset_class = ReservaFilter
 
-def busquedas(request):
-    query = request.GET.get('q')
-    resultado = Producto.objects.filter(Q(nombre__icontains = query) | Q(descripcion = query))
-
-    return render(request, 'core/Arriendo.html', {'resultado': resultado, 'query': query})
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset

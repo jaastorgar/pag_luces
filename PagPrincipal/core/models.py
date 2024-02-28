@@ -38,15 +38,16 @@ class Producto(models.Model):
     def __str__ (self):
         return self.nombre
     
+class Carrito(models.Model):
+    cliente = models.OneToOneField(Cliente, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f'Carrito de {self.cliente.nombreCliente}'
+    
 class Reserva(models.Model):
-    cliente = models.ForeignKey(Cliente, on_delete = models.CASCADE)
-    fechainicio = models.DateField()
-    fechafin = models.DateField()
+    carrito = models.ForeignKey(Carrito, on_delete=models.CASCADE)
     producto = models.ForeignKey(Producto, on_delete = models.CASCADE)
     cantidad = models.PositiveBigIntegerField(default = 1)
-    comentario = models.TextField()
-    terminocondicion = models.BooleanField(default = False,
-    verbose_name = 'Acepto los terminos y condiciones')
 
     def __str__ (self):
-        return f'Reserva para {self.producto.nombre} de {self.producto.stock} tambien {self.cliente.nombreCliente} de {self.cliente.email} de {self.cliente.telefono} de {self.cliente.direccion}'
+        return f'Reserva para Cliente: {self.carrito.cliente.nombreCliente} del Producto: {self.producto.nombre}'

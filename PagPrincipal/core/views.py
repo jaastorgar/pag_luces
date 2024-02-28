@@ -76,13 +76,9 @@ def generar_informe_completo(request):
     pdf.drawString(100, y, "Información de Reservas:")
     for reserva in reservas:
         y -= 20
-        pdf.drawString(100, y, f"Cliente: {reserva.cliente.nombreCliente}")
+        pdf.drawString(100, y, f"Cliente: {reserva.carrito.cliente.nombreCliente}")
         y -= 15
         pdf.drawString(100, y, f"Producto: {reserva.producto.nombre}")
-        y -= 15
-        pdf.drawString(100, y, f"Fecha Inicio: {reserva.fechainicio}")
-        y -= 15
-        pdf.drawString(100, y, f"Fecha Fin: {reserva.fechafin}")
         y -= 20
     
     # Indica que la página está completa

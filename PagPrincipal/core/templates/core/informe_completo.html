@@ -64,8 +64,6 @@
             <tr>
                 <th>Cliente</th>
                 <th>Producto</th>
-                <th>Fecha de inicio</th>
-                <th>Fecha termino</th>
             </tr>   
         </thead>
         <tbody>
@@ -73,8 +71,6 @@
                 <tr>
                     <td>{{ reserva.cliente.nombreCliente }}</td>
                     <td>{{ reserva.producto.nombre }}</td>
-                    <td>{{ reserva.fechainicio }}</td>
-                    <td>{{ reserva.fechafin }}</td>
                 </tr>
             {% endfor %}
         </tbody>

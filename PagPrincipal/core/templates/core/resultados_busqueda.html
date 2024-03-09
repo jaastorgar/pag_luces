@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busqueda</title>
+</head>
+<body>
+    {% if productos %}
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        {% for producto in productos %}
+            <a class="dropdown-item" href="{% url 'detalle_producto' producto.id %}">{{ producto.nombre }}</a>
+        {% endfor %}
+    </div>
+    {% endif %}
+</body>
+</html>

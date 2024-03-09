@@ -1,10 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from .models import Cliente, Producto, Reserva
 from django.http import HttpResponse
 from reportlab.pdfgen import canvas
-from django.db.models import Q 
-from .filters import ReservaFilter
-from django_filters.views import FilterView
 
 
 # Create your views here.
@@ -13,9 +10,6 @@ def home(request):
 
 def arriendo(request):
     return render(request, 'core/Arriendo.html')
-
-def iniciosesion(request):
-    return render(request, 'core/inicioSesion.html')
 
 def generar_informe_completo(request):
     # Obtén todos los objetos de los modelos relacionados
@@ -105,11 +99,17 @@ def informe_completo(request):
         'reservas': reservas,
     })
 
-class ListaReservasView(FilterView):
-    model = Reserva
-    template_name = 'reserva_filter.html'
-    filterset_class = ReservaFilter
+def buscar_productos(request):
+    try:
+        query = request.GET.get('q', '')
+        productos = Producto.objects.filter(nombre__icontains = query)
+        return render(request, 'core/resultados_busqueda.html', {'productos': productos, 'query': query})
+    except Exception as e:
+        # Imprime o registra la excepción para depuración
+        print(f"Error en la vista buscar_productos: {e}")
+        return HttpResponse(status=500)
+    
+def detalle_producto(request, producto_id):
+    producto = get_object_or_404(Producto, id=producto_id)
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset
+    return render(request, 'core/detalle_producto.html', {'producto': producto})

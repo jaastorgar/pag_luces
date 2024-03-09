@@ -40,10 +40,11 @@
                       <a class="nav-link disabled" aria-disabled="true">Deshabilitado</a>
                   </li>
               </ul>
-              <form class="d-flex" role="search">
-                  <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
-                  <button class="btn btn-outline-success" type="submit">Buscar</button>
-              </form>
+              <form class="d-flex" action="{% url 'buscar_productos' %}" method="get">
+                <input id="searchInput" name="q" class="form-control me-2" type="search" placeholder="Buscar producto" aria-label="Buscar">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+            
           </div>
       </div>
   </nav>

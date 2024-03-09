@@ -22,7 +22,7 @@ function cambiarImagen() {
 }
 
 // Inicia el cambio de imágenes
-const carruselInterval = setInterval(cambiarImagen, intervalo);
+let carruselInterval = setInterval(cambiarImagen, intervalo);
 
 // Detiene el carrusel al colocar el mouse sobre él
 document.getElementById('conteItemsCarrusel').addEventListener('mouseenter', () => {

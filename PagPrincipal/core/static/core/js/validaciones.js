@@ -1,3 +1,4 @@
+// Para el carrusel
 // Configura el intervalo de cambio de imágenes (en milisegundos)
 const intervalo = 3000; // Cambia la imagen cada 3 segundos
 
@@ -33,3 +34,14 @@ document.getElementById('conteItemsCarrusel').addEventListener('mouseenter', () 
 document.getElementById('conteItemsCarrusel').addEventListener('mouseleave', () => {
   carruselInterval = setInterval(cambiarImagen, intervalo);
 });
+
+// Para el boton de busqueda
+document.getElementById('searchInput').addEventListener('input', function() {
+    var valorBusqueda = this.value.trim();
+    document.getElementById('btnBuscar').disabled = valorBusqueda === '';
+});
+
+function validarFormulario() {
+    var valorBusqueda = document.getElementById('searchInput').value.trim();
+    return valorBusqueda !== '';
+}

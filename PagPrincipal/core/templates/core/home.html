@@ -37,14 +37,13 @@
                       </ul>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link disabled" aria-disabled="true">Deshabilitado</a>
+                      <a class="nav-link disabled" aria-disabled="true">Proximamente</a>
                   </li>
               </ul>
-              <form class="d-flex" action="{% url 'buscar_productos' %}" method="get">
+              <form class="d-flex" action="{% url 'buscar_productos' %}" method="get" onsubmit="return validarFormulario()">
                 <input id="searchInput" name="q" class="form-control me-2" type="search" placeholder="Buscar producto" aria-label="Buscar">
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
-            
+                <button id="btnBuscar" class="btn btn-outline-success" type="submit" disabled>Buscar</button>
+              </form>
           </div>
       </div>
   </nav>

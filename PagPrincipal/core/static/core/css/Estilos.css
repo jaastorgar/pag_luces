@@ -82,6 +82,7 @@ img {
     width: 100%;
 }
 
+/* Para el formulario */
 #clienForm {
     display: flex;
     flex-direction: column;

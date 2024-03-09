@@ -8,13 +8,5 @@
     <title>Document</title>
 </head>
 <body>
-    <form method="get" action="{% url 'reserva_filter' %}">
-        {{ filter.form.as_p }}
-        <button type="submit">Buscar</button>
-      </form>
-      
-      {% for reserva in filter.qs %}
-        <p>{{ reserva.cliente.nombreCliente }} - {{ reserva.producto.nombre }} - {{ reserva.cantidad }}</p>
-      {% endfor %}
 </body>
 </html>

@@ -20,10 +20,6 @@
           <li><a href="">Quienes somos</a></li>
           <li><a href="">Carrito</a></li>
         </ul>
-        <form id="searchForm" action="{% url 'busquedas' %}" method="get">
-          <input type="text" name="q" placeholder="Buscar">
-          <button type="submit">Buscar</button>
-       </form>
     </nav>
     <br>
     <div>
@@ -71,17 +67,12 @@
         </div>
       </div>
     </div>
-    <div id="contePuntos">
-      <a href="#itemCarrusel-1">*</a>
-      <a href="#itemCarrusel-2">*</a>
-      <a href="#itemCarrusel-3">*</a>
-    </div>
     <br>
     <div class="container">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 mb-4">
           <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
+            <img src="{% static 'core/img/Reserva.jpeg' %}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">Card 1</h5>
               <p class="card-text">Contenido de la primera tarjeta.</p>
@@ -89,19 +80,19 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 mb-4">
           <div class="card" style="width: 18rem;">
             <img src="{% static 'core/img/Reserva.jpeg' %}" class="card-img-top" alt="...">
             <div class="card-body text-center">
               <h5 class="card-title">Reservas las luces</h5>
               <p class="card-text">Aqui encontraras todo tipo de luces para fiestas, matrimonios, cumpleaños etc.</p>
-              <a href="{% url 'reservas' %}" class="btn btn-primary">Entrar</a>
+              <a href="#" class="btn btn-primary">Entrar</a>
             </div>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 mb-4">
           <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
+            <img src="{% static 'core/img/Reserva.jpeg' %}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">Card 3</h5>
               <p class="card-text">Contenido de la segunda tarjeta.</p>
@@ -115,5 +106,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="static/core/js/validaciones.js"></script>
 </body>
 </html>

@@ -57,25 +57,5 @@
             {% endfor %}
         </tbody>
     </table>
-
-    <h2>Informacion de las reservas</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Cliente</th>
-                <th>Producto</th>
-                <th>Cantidad</th>
-            </tr>   
-        </thead>
-        <tbody>
-            {% for reserva in reservas %}
-                <tr>
-                    <td>{{ reserva.carrito.id }}</td>
-                    <td>{{ reserva.producto.nombre }}</td>
-                    <td>{{ reserva.cantidad }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
 </body>
 </html>

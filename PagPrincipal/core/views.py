@@ -1,8 +1,11 @@
-from django.shortcuts import get_object_or_404, render
-from .models import Cliente, Producto, Reserva
+from django.shortcuts import get_object_or_404, render, redirect
+from .models import Cliente, Producto
 from django.http import HttpResponse
 from reportlab.pdfgen import canvas
-
+from .forms import ClienteLoginForm, ClienteRegistroForm
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
+from django.views.decorators.csrf import csrf_protect
 
 # Create your views here.
 def home(request):
@@ -15,7 +18,6 @@ def generar_informe_completo(request):
     # Obtén todos los objetos de los modelos relacionados
     clientes = Cliente.objects.prefetch_related('region', 'comuna').all()
     productos = Producto.objects.all()
-    reservas = Reserva.objects.prefetch_related('carrito__cliente', 'producto').all()
 
     # Configura el encabezado de la respuesta HTTP para indicar que es un archivo PDF
     response = HttpResponse(content_type='application/pdf')
@@ -66,18 +68,6 @@ def generar_informe_completo(request):
         pdf.drawString(100, y, f"Stock: {producto.stock}")
         y -= 20
 
-    # Información de Reservas
-    y -= 20
-    pdf.drawString(100, y, "Información de Reservas:")
-    for reserva in reservas:
-        y -= 20
-        pdf.drawString(100, y, f"Carrito del Cliente: {reserva.carrito.id}")
-        y -= 15
-        pdf.drawString(100, y, f"Producto: {reserva.producto.nombre}")
-        y -= 20
-        pdf.drawString(100, y, f"Cantidad: {reserva.cantidad}")
-        y -= 20
-    
     # Indica que la página está completa
     pdf.showPage()
 
@@ -90,13 +80,11 @@ def informe_completo(request):
     # Obtener datos de los modelos (ajusta según tus necesidades)
     clientes = Cliente.objects.all().prefetch_related('region', 'comuna')
     productos = Producto.objects.all()
-    reservas = Reserva.objects.all()
 
     # Renderizar la plantilla con los datos
     return render(request, 'informe_completo.html', {
         'clientes': clientes,
         'productos': productos,
-        'reservas': reservas,
     })
 
 def buscar_productos(request):
@@ -110,6 +98,40 @@ def buscar_productos(request):
         return HttpResponse(status=500)
     
 def detalle_producto(request, producto_id):
-    producto = get_object_or_404(Producto, id=producto_id)
+    producto = get_object_or_404(Producto, id = producto_id)
 
     return render(request, 'core/detalle_producto.html', {'producto': producto})
+
+@csrf_protect
+def cliente_login(request):
+    if request.method == 'POST':
+        form = ClienteLoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username = username, password = password)
+            if user:
+                login(request, user)
+
+                return redirect('home')
+            else:
+                messages.error(request, 'Nombre de usuario o contraseña incorrectos')
+        else:
+            messages.error(request, 'Por favor, corrija los errores en el formulario.')
+    else:
+        form = ClienteLoginForm()
+    
+    return render(request, 'core/cliente_login.html', {'form': form})
+
+@csrf_protect
+def registrar_cliente(request):
+    if request.method == 'POST':
+        form = ClienteRegistroForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Redirigir a la página de inicio de sesión o a donde desees después del registro
+            return redirect('cliente_login')
+    else:
+        form = ClienteRegistroForm()
+
+    return render(request, 'core/registro_cliente.html', {'form': form})

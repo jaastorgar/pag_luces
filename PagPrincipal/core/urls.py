@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from .views import home, arriendo, generar_informe_completo, buscar_productos, detalle_producto, cliente_login, registrar_cliente
 
 

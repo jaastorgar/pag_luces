@@ -87,15 +87,14 @@ WSGI_APPLICATION = 'PagPrincipal.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'fiestaluces',
         'USER': 'javito',
         'PASSWORD': 'pass',
         'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

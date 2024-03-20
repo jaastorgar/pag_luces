@@ -1,9 +1,8 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
 from .models import Cliente
 
 class ClienteLoginForm(forms.Form):
-    username = forms.CharField(label='Nombre de usuario')
+    email = forms.EmailField(label='Correo electrónico')
     password = forms.CharField(widget=forms.PasswordInput, label='Contraseña')
 
 class ClienteRegistroForm(forms.ModelForm):
@@ -23,9 +22,12 @@ class ClienteRegistroForm(forms.ModelForm):
         return password2
 
     def save(self, commit=True):
-        # Guarda la contraseña de manera segura
+        # Guarda el usuario y su contraseña de manera segura
         user = super().save(commit=False)
-        user.set_password(self.cleaned_data["password1"])
+        password = self.cleaned_data["password1"]
+        if password:
+            # Aquí usamos el gestor personalizado para crear el usuario con contraseña segura
+            user.set_password(password)
         if commit:
             user.save()
         return user

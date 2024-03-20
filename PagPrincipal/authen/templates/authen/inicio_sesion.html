@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'authen/css/Estilos.css' %}">
+    <title>Iniciar Sesión</title>
+</head>
+<body>
+    <div class="container1">
+        <h2>Iniciar Sesión</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-iniciar-sesion">Iniciar Sesión</button>
+        </form>
+        <div class="container2">
+            <a href="{% url 'registro' %}" class="btn btn-primary">Registrate</a>
+            <br>
+            <a href="{% url 'recuperar_contrasena' %}" class="btn btn-primary">Olvide mi contraseña</a>
+        </div>
+    </div>
+</body>
+</html>

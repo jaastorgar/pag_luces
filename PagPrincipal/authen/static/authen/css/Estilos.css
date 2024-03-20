@@ -1,0 +1,48 @@
+body {
+    background-color: #add8e6;
+}
+
+.container1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    border: 2px solid #ccc;
+    padding: 0px;
+}
+
+.container2 {
+    margin-top: 20px; 
+}
+
+.btn-iniciar-sesion {
+    padding: 10px 20px;
+    margin: 10px; /* Agrega un margen alrededor del botón */
+    border: 2px solid #007bff; /* Establece un borde de 2px sólido de color azul */
+    border-radius: 5px; /* Agrega esquinas redondeadas */
+    background-color: #007bff; /* Establece el color de fondo del botón */
+    color: #fff; /* Establece el color del texto del botón */
+    font-size: 16px; /* Establece el tamaño de la fuente */
+    cursor: pointer; /* Cambia el cursor al pasar por encima del botón */
+}
+
+.btn-iniciar-sesion:hover {
+    background-color: #0056b3; /* Cambia el color de fondo al pasar el cursor */
+    border-color: #0056b3; /* Cambia el color del borde al pasar el cursor */
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    border: 2px solid #007bff; /* Establece un borde de 2px sólido de color azul */
+    border-radius: 5px; /* Agrega esquinas redondeadas */
+    text-decoration: none; /* Quita la subrayado predeterminado de los enlaces */
+    color: #007bff; /* Color del texto */
+}
+
+.btn:hover {
+    background-color: #007bff; /* Cambia el color de fondo al pasar el cursor */
+    color: #fff; /* Cambia el color del texto al pasar el cursor */
+}

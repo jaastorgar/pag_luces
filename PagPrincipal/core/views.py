@@ -101,37 +101,3 @@ def detalle_producto(request, producto_id):
     producto = get_object_or_404(Producto, id = producto_id)
 
     return render(request, 'core/detalle_producto.html', {'producto': producto})
-
-@csrf_protect
-def cliente_login(request):
-    if request.method == 'POST':
-        form = ClienteLoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(request, username = username, password = password)
-            if user:
-                login(request, user)
-
-                return redirect('home')
-            else:
-                messages.error(request, 'Nombre de usuario o contraseña incorrectos')
-        else:
-            messages.error(request, 'Por favor, corrija los errores en el formulario.')
-    else:
-        form = ClienteLoginForm()
-    
-    return render(request, 'core/cliente_login.html', {'form': form})
-
-@csrf_protect
-def registrar_cliente(request):
-    if request.method == 'POST':
-        form = ClienteRegistroForm(request.POST)
-        if form.is_valid():
-            form.save()
-            # Redirigir a la página de inicio de sesión o a donde desees después del registro
-            return redirect('cliente_login')
-    else:
-        form = ClienteRegistroForm()
-
-    return render(request, 'core/registro_cliente.html', {'form': form})

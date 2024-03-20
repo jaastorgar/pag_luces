@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 # Create your models here.
 class Region(models.Model):
@@ -13,7 +15,21 @@ class Comuna(models.Model):
     def __str__(self):
         return self.nombre 
 
-class Cliente(models.Model):
+class ClienteManager(BaseUserManager):
+    def create_user(self, email, password=None, **extra_fields):
+        """
+        Crea y devuelve un usuario con el correo electrónico y la contraseña especificados.
+        """
+        if not email:
+            raise ValueError('El correo electrónico es obligatorio')
+
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+class Cliente(AbstractBaseUser):
     nombreCliente = models.CharField(max_length=50, verbose_name='Nombre del cliente')
     telefono = models.IntegerField(blank=True, null=True,
     verbose_name='Telefono del cliente')
@@ -23,8 +39,13 @@ class Cliente(models.Model):
     region = models.ManyToManyField('Region', blank = True) 
     comuna = models.ManyToManyField('Comuna', blank = True)
 
-    def __str__ (self):
-        return self.nombreCliente 
+    objects = ClienteManager()
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['nombreCliente', 'telefono', 'direccion', 'region', 'comuna']
+
+    def __str__(self):
+        return self.email
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=100,

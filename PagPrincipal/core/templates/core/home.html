@@ -37,7 +37,7 @@
                       </ul>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link disabled" aria-disabled="true">Proximamente</a>
+                    <a href="{% url 'inicio_sesion' %}" class="btn btn-primary">Inicia Sesion</a>
                   </li>
               </ul>
               <form class="d-flex" action="{% url 'buscar_productos' %}" method="get" onsubmit="return validarFormulario()">
